@@ -1,10 +1,7 @@
-﻿
-@page
+﻿@page
 @model ServiceHost.Areas.Administration.Pages.Shop.ProductCategories.IndexModel
 @{
 }
-
-@{
     Layout = "Shared/_AdminLayout";
     ViewData["title"] = "مدیریت گروه محصولات";
 }
@@ -27,7 +24,7 @@
             <div class="panel-body">
                 <form class="form-inline" role="form" method="get">
                     <div class="form-group">
-                        <label class="sr-only" asp-for="SearchModel.Name" ></label>
+                        <label class="sr-only" asp-for="SearchModel.Name"></label>
                         <input class="form-control" asp-for="SearchModel.Name" placeholder="نام گروه محصولی">
                     </div>
                     <button type="submit" class="btn btn-success waves-effect waves-light m-l-10">جستجو</button>

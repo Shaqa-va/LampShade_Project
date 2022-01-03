@@ -1,4 +1,5 @@
 ﻿using _0_Framework.Domain;
+using ShopManagement.Domain.ProductAgg;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,7 +19,13 @@ namespace ShopManagement.Domain.ProductCategoryAgg
         public string MetaDescription { get; private set; }
         public string Slug { get; private set; }
 
+        public List<Product> Products { get;private set; }
         public string PictureAlt { get; set; }
+
+        public ProductCategory()
+        {
+            Products = new List<Product>();
+        }
         public ProductCategory(string name, string description, string picture, string pictureAlt,
             string pictureTitle, string keywords, string metaDescription, string slug)
         {
@@ -30,6 +37,7 @@ namespace ShopManagement.Domain.ProductCategoryAgg
             Keywords = keywords;
             MetaDescription = metaDescription;
             Slug = slug;
+           
         }
         public void Edit(string name, string description, string picture, string pictureAlt, string pictureTitle, string keywords, string metaDescription, string slug)
         {

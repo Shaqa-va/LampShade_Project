@@ -1,5 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using ShopManagement.Domain.ProductAgg;
 using ShopManagement.Domain.ProductCategoryAgg;
+using ShopManagement.Domain.ProductPictureAgg;
+using ShopManagement.Domain.SlideAgg;
 using ShopManagement.Infrastructure.EFCore.Mapping;
 using System;
 using System.Collections.Generic;
@@ -11,7 +14,11 @@ namespace ShopManagement.Infrastructure.EFCore
 {
     public class ShopConetext:DbContext
     {
+        public DbSet<Slide> Slides { get; set; }
         public DbSet<ProductCategory> ProductCategories { get; set; }
+        public DbSet<Product> Products { get; set; }
+        public DbSet<ProductPicture> ProductPictures { get; set; }
+
         public ShopConetext(DbContextOptions<ShopConetext> options):base(options)
         {
 
