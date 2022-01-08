@@ -6,6 +6,9 @@
 
   <ItemGroup>
     <ProjectReference Include="..\01_LampshadeQuery\01_LampshadeQuery.csproj" />
+    <ProjectReference Include="..\DiscountManagement.Application.Contract\DiscountManagement.Application.Contract.csproj" />
+    <ProjectReference Include="..\DiscountManagement.Application\DiscountManagement.Application.csproj" />
+    <ProjectReference Include="..\DiscountManagement.Configuration\DiscountManagement.Configuration.csproj" />
     <ProjectReference Include="..\ShopManagement.Application.Contracts\ShopManagement.Application.Contracts.csproj" />
     <ProjectReference Include="..\ShopManagement.Application\ShopManagement.Application.csproj" />
     <ProjectReference Include="..\ShopManagement.Configuration\ShopManagement.Configuration.csproj" />

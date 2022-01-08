@@ -1,4 +1,5 @@
-﻿using _0_Framework.Infraustructure;
+﻿using _0_Framework.Application;
+using _0_Framework.Infraustructure;
 using Microsoft.EntityFrameworkCore;
 using ShopManagement.Application.Contracts.Product;
 using ShopManagement.Domain.ProductAgg;
@@ -47,7 +48,7 @@ namespace ShopManagement.Infrastructure.EFCore.Repository
             }).ToList();
         }
 
-        public List<ProductViewModel> Search(ProductPicturesSearchModel searchModel)
+        public List<ProductViewModel> Search(ProductSearchModel searchModel)
         {
             var query = _context.Products.Include(x => x.Category).Select(x => new ProductViewModel
             {
@@ -58,7 +59,7 @@ namespace ShopManagement.Infrastructure.EFCore.Repository
                 Code = x.Code,
                 Picture = x.Picture,
                 UnitPrice = x.UnitPrice,
-                CreationDate = x.CreationDate.ToString(),
+                CreationDate = x.CreationDate.ToFarsi(),
                 IsInStock=x.IsInStock
             }); ;
             if (!string.IsNullOrWhiteSpace(searchModel.Name))

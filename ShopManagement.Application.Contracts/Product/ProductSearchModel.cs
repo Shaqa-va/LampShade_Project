@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ShopManagement.Application.Contracts.Product
 {
-    public class ProductPicturesSearchModel
+    public class ProductSearchModel
     {
         public string Name { get; set; }
         public string Code { get; set; }

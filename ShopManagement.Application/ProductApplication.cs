@@ -86,7 +86,7 @@ namespace ShopManagement.Application
             return operation.Seccedded();
         }
 
-        public List<ProductViewModel> Search(ProductPicturesSearchModel searchModel)
+        public List<ProductViewModel> Search(ProductSearchModel searchModel)
         {
             return _productRepository.Search(searchModel);
         }
