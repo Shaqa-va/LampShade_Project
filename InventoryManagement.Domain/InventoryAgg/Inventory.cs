@@ -22,13 +22,20 @@ namespace InventoryManagement.Domain.InventoryAgg
 
         }
 
-        private long CalculateCurrentCount()
+        public long CalculateCurrentCount()
         {
             var plus = Operations.Where(x => x.Operation).Sum(x => x.Count);
             var minus = Operations.Where(x => !x.Operation).Sum(x => x.Count);
             return plus - minus;
 
         }
+
+        public void Edit(long productId, double unitPrice)
+        {
+            ProductId = productId;
+            UnitPrice = unitPrice;
+        }
+
         //افزایش موجودی بدیم تو انبار 
 
         public void Increase(long count, long operatorId, string description)
