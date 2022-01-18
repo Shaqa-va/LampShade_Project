@@ -1,11 +1,7 @@
 ﻿using _0_Framework.Application;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace InventoryManagement_Application.Contract.Inventory
+namespace InventoryManagement.Application.Contract.Inventory
 {
     public interface IInventoryApplication
     {
@@ -14,8 +10,8 @@ namespace InventoryManagement_Application.Contract.Inventory
         OperationResult Increase(IncreaseInventory command);
         OperationResult Reduce(ReduceInventory command);
         OperationResult Reduce(List<ReduceInventory> command);
-        //OperationResult IncreasePrice(InventorySearchModel searchModel);
         EditInventory GetDetails(long id);
         List<InventoryViewModel> Search(InventorySearchModel searchModel);
+        List<InventoryOperationViewModel> GetOperationLog(long inventoryId);
     }
 }

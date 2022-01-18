@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace InventoryManagement_Application.Contract.Inventory
+﻿namespace InventoryManagement.Application.Contract.Inventory
 {
     public class InventoryViewModel
     {
@@ -12,8 +6,8 @@ namespace InventoryManagement_Application.Contract.Inventory
         public string Product { get; set; }
         public long ProductId { get; set; }
         public double UnitPrice { get; set; }
-
         public bool InStock { get; set; }
         public long CurrentCount { get; set; }
+        public string CreationDate { get; set; }
     }
 }

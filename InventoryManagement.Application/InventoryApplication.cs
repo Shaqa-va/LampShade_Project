@@ -1,18 +1,20 @@
-﻿using _0_Framework.Application;
+﻿
+using _0_Framework.Application;
+using InventoryManagement.Application.Contract.Inventory;
 using InventoryManagement.Domain.InventoryAgg;
-using InventoryManagement_Application.Contract.Inventory;
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace InventoryManagement.Application
 {
-    public class InventoryApplication: IInventoryApplication
+    public class InventoryApplication : IInventoryApplication
     {
         private readonly IInventoryRepository _inventoryRepository;
+
         public InventoryApplication(IInventoryRepository inventoryRepository)
         {
             _inventoryRepository = inventoryRepository;
+            //_authHelper = authHelper;
         }
 
         public OperationResult Create(CreateInventory command)
@@ -25,11 +27,12 @@ namespace InventoryManagement.Application
             _inventoryRepository.Create(inventory);
             _inventoryRepository.SaveChanges();
             return operation.Seccedded();
-         }
+        }
 
         public OperationResult Edit(EditInventory command)
         {
             var operation = new OperationResult();
+            var id = command.Id;
             var inventory = _inventoryRepository.Get(command.Id);
             if (inventory == null)
                 return operation.Failed(ApplicationMessages.RecordNotFound);
@@ -47,18 +50,26 @@ namespace InventoryManagement.Application
             return _inventoryRepository.GetDetails(id);
         }
 
+      
+
+        public List<InventoryOperationViewModel> GetOperationLog(long inventoryId)
+        {
+            return _inventoryRepository.GetOperationLog(inventoryId);
+        }
+
         public OperationResult Increase(IncreaseInventory command)
         {
             var operation = new OperationResult();
             var inventory = _inventoryRepository.Get(command.InventoryId);
             if (inventory == null)
                 return operation.Failed(ApplicationMessages.RecordNotFound);
+
             const long operatorId = 1;
             inventory.Increase(command.Count, operatorId, command.Description);
             _inventoryRepository.SaveChanges();
             return operation.Seccedded();
-
         }
+
         public OperationResult Reduce(ReduceInventory command)
         {
             var operation = new OperationResult();
@@ -66,9 +77,8 @@ namespace InventoryManagement.Application
             if (inventory == null)
                 return operation.Failed(ApplicationMessages.RecordNotFound);
 
-            const long operatorId = 1;
-            // از آنجایی که انباردار سفارش رو میفرسته آی دی سفارش برابر با صفر
-            inventory.Reduce(command.Count, operatorId, command.Description,0);
+            var operatorId = 1;
+            inventory.Reduce(command.Count, operatorId, command.Description, 0);
             _inventoryRepository.SaveChanges();
             return operation.Seccedded();
         }
@@ -76,8 +86,8 @@ namespace InventoryManagement.Application
         public OperationResult Reduce(List<ReduceInventory> command)
         {
             var operation = new OperationResult();
-            const long operatorId = 1;
-           foreach(var item in command)
+            var operatorId = 1;
+            foreach (var item in command)
             {
                 var inventory = _inventoryRepository.GetBy(item.ProductId);
                 inventory.Reduce(item.Count, operatorId, item.Description, item.OrderId);
@@ -86,9 +96,6 @@ namespace InventoryManagement.Application
             _inventoryRepository.SaveChanges();
             return operation.Seccedded();
         }
-
-
-
 
         public List<InventoryViewModel> Search(InventorySearchModel searchModel)
         {

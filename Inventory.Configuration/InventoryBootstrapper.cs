@@ -4,7 +4,7 @@ using InventoryManagement.Application;
 using InventoryManagement.Domain.InventoryAgg;
 using InventoryManagement.Infrastructure.EFCore;
 using InventoryManagement.Infrastructure.EFCore.Repository;
-using InventoryManagement_Application.Contract.Inventory;
+using InventoryManagement.Application.Contract.Inventory;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 

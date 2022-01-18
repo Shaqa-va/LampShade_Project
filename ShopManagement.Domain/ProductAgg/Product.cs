@@ -13,8 +13,10 @@ namespace ShopManagement.Domain.ProductAgg
     {
         public string Name { get; private set; }
         public string Code { get; private set; }
-        public double UnitPrice { get; private set; }
-        public bool IsInStock { get; set; }
+
+        // توی انبار این دوتا رو تعریف می کنیم.
+        //public double UnitPrice { get; private set; }
+        //public bool IsInStock { get; set; }
         public string ShortDescription { get; private set; }
         public string Description { get; private set; }
         public string Picture { get; private set; }
@@ -27,14 +29,14 @@ namespace ShopManagement.Domain.ProductAgg
         public ProductCategory Category { get; private set; }
 
         public List<ProductPicture> ProductPictures { get; set; }
-        public Product(string name, string code, string shortDescription, double unitPrice, string description, string picture, string pictureAlt,
+        public Product(string name, string code, string shortDescription, string description, string picture, string pictureAlt,
        string pictureTitle, string keywords, string metaDescription, string slug, long categoryId)
         {
             Name = name;
             Code = code;
             Description = description;
             ShortDescription = shortDescription;
-            UnitPrice = unitPrice;
+            //UnitPrice = unitPrice;
             Picture = picture;
             PictureTitle = pictureTitle;
             PictureAlt = pictureAlt;
@@ -42,16 +44,15 @@ namespace ShopManagement.Domain.ProductAgg
             MetaDescription = metaDescription;
             Slug = slug;
             CategoryId = categoryId;
-            IsInStock = true;
+            //IsInStock = true;
         }
-        public void Edit(string name, string code, string shortDescription, double unitPrice, string description, string picture, string pictureAlt,
+        public void Edit(string name, string code, string shortDescription, string description, string picture, string pictureAlt,
       string pictureTitle, string keywords, string metaDescription, string slug, long categoryId)
         {
             Name = name;
             Code = code;
             Description = description;
             ShortDescription = shortDescription;
-            UnitPrice = unitPrice;
             Picture = picture;
             PictureTitle = pictureTitle;
             PictureAlt = pictureAlt;
@@ -62,14 +63,14 @@ namespace ShopManagement.Domain.ProductAgg
         }
 
 
-        public void InStock()
-        {
-            IsInStock = true;
-        }
+        //public void InStock()
+        //{
+        //    IsInStock = true;
+        //}
 
-        public void NotInStock()
-        {
-            IsInStock = false;
-        }
+        //public void NotInStock()
+        //{
+        //    IsInStock = false;
+        //}
     }
 }

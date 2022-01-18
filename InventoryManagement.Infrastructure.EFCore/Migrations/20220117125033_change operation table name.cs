@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace InventoryManagement.Infrastructure.EFCore.Migrations
 {
-    public partial class InitialInventoryDatabaseandOperation : Migration
+    public partial class changeoperationtablename : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -24,7 +24,7 @@ namespace InventoryManagement.Infrastructure.EFCore.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Operations",
+                name: "InventoryOperations",
                 columns: table => new
                 {
                     Id = table.Column<long>(type: "bigint", nullable: false)
@@ -40,9 +40,9 @@ namespace InventoryManagement.Infrastructure.EFCore.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Operations", x => x.Id);
+                    table.PrimaryKey("PK_InventoryOperations", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Operations_Inventory_InventoryId",
+                        name: "FK_InventoryOperations_Inventory_InventoryId",
                         column: x => x.InventoryId,
                         principalTable: "Inventory",
                         principalColumn: "Id",
@@ -50,15 +50,15 @@ namespace InventoryManagement.Infrastructure.EFCore.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Operations_InventoryId",
-                table: "Operations",
+                name: "IX_InventoryOperations_InventoryId",
+                table: "InventoryOperations",
                 column: "InventoryId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Operations");
+                name: "InventoryOperations");
 
             migrationBuilder.DropTable(
                 name: "Inventory");

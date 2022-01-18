@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace InventoryManagement.Infrastructure.EFCore.Migrations
 {
     [DbContext(typeof(InventoryContext))]
-    [Migration("20220112184220_Operations change to inventoryOperation")]
-    partial class OperationschangetoinventoryOperation
+    [Migration("20220117125033_change operation table name")]
+    partial class changeoperationtablename
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

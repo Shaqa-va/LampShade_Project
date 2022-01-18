@@ -22,7 +22,7 @@ namespace ShopManagement.Application
             if (_productRepository.Exists(x => x.Name == command.Name))
                 return operation.Failed(ApplicationMessages.DuplicatedRecord);
             var sulg = command.Slug.Slugify();
-            var product = new ShopManagement.Domain.ProductAgg.Product(command.Name, command.Code, command.ShortDescription, command.UnitPrice, command.Description,
+            var product = new ShopManagement.Domain.ProductAgg.Product(command.Name, command.Code, command.ShortDescription, command.Description,
              command.Picture, command.PictureTitle, command.PictureAlt,
              command.Keywords, command.MetaDescription, sulg, command.CategoryId);
 
@@ -40,7 +40,7 @@ namespace ShopManagement.Application
             if (_productRepository.Exists(x => x.Name == command.Name && x.Id != command.Id))
                 return operation.Failed(ApplicationMessages.DuplicatedRecord);
             var sulg = command.Slug.Slugify();
-            product.Edit(command.Name, command.Code, command.ShortDescription, command.UnitPrice, command.Description,
+            product.Edit(command.Name, command.Code, command.ShortDescription, command.Description,
              command.Picture, command.PictureTitle, command.PictureAlt,
              command.Keywords, command.MetaDescription, sulg, command.CategoryId);
 
@@ -59,32 +59,32 @@ namespace ShopManagement.Application
             return _productRepository.GetProducts();
         }
 
-        public OperationResult InStock(long id)
-        {
-            var operation = new OperationResult();
-            var product = _productRepository.Get(id);
-            if (product == null)
-                return operation.Failed(ApplicationMessages.RecordNotFound);
+        //public OperationResult InStock(long id)
+        //{
+        //    var operation = new OperationResult();
+        //    var product = _productRepository.Get(id);
+        //    if (product == null)
+        //        return operation.Failed(ApplicationMessages.RecordNotFound);
 
 
-            product.InStock();
-            _productRepository.SaveChanges();
-            return operation.Seccedded();
+        //    product.InStock();
+        //    _productRepository.SaveChanges();
+        //    return operation.Seccedded();
 
-        }
+        //}
 
-        public OperationResult NotInStock(long id)
-        {
-            var operation = new OperationResult();
-            var product = _productRepository.Get(id);
-            if (product == null)
-                return operation.Failed(ApplicationMessages.RecordNotFound);
+        //public OperationResult NotInStock(long id)
+        //{
+        //    var operation = new OperationResult();
+        //    var product = _productRepository.Get(id);
+        //    if (product == null)
+        //        return operation.Failed(ApplicationMessages.RecordNotFound);
 
 
-            product.NotInStock();
-            _productRepository.SaveChanges();
-            return operation.Seccedded();
-        }
+        //    product.NotInStock();
+        //    _productRepository.SaveChanges();
+        //    return operation.Seccedded();
+        //}
 
         public List<ProductViewModel> Search(ProductSearchModel searchModel)
         {
