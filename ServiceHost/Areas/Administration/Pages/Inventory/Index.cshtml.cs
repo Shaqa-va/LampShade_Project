@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using DiscountManagement.Infrastructure.EFCore;
 using InventoryManagement.Application.Contract.Inventory;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -21,6 +22,8 @@ namespace ServiceHost.Areas.Administration.Pages.Inventory
 
         private readonly IInventoryApplication _inventoryApplication;
         private readonly IProductApplication _productApplication;
+    
+
         public IndexModel(IInventoryApplication inventoryApplication , IProductApplication productApplication)
         {
             _inventoryApplication = inventoryApplication;

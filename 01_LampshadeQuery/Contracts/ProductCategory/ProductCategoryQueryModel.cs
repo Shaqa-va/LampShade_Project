@@ -1,5 +1,8 @@
 ﻿
 
+using _01_LampshadeQuery.Contracts.Product;
+using System.Collections.Generic;
+
 namespace _01_LampshadeQuery.Contracts.ProductCategory
 {
     public class ProductCategoryQueryModel
@@ -12,8 +15,13 @@ namespace _01_LampshadeQuery.Contracts.ProductCategory
 
         public string PictureTitle { get;  set; }
 
+        public string Keywords { get;  set; }
+        public string MetaDescription { get;  set; }
+        public string  Description { get; set; }
+
         public string Slug { get;  set; }
 
         public string PictureAlt { get; set; }
+        public List<ProductQueryModel> Products { get; set; }
     }
 }

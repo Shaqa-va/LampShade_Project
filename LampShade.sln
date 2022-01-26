@@ -59,9 +59,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Inventory.Configuration", "
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "IM.Application", "IM.Application", "{4D966B47-3B0F-47BF-837D-48E4BDEC3A36}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InventoryManagement.Application", "InventoryManagement.Application\InventoryManagement.Application.csproj", "{D687905D-F303-411D-B752-2D836071BF02}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InventoryManagement.Application", "InventoryManagement.Application\InventoryManagement.Application.csproj", "{D687905D-F303-411D-B752-2D836071BF02}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InventoryManagement.Application.Contract", "InventoryManagement.Application.Contract\InventoryManagement.Application.Contract.csproj", "{DF267BF2-0941-4B34-A0C7-2C4516F624F7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InventoryManagement.Application.Contract", "InventoryManagement.Application.Contract\InventoryManagement.Application.Contract.csproj", "{DF267BF2-0941-4B34-A0C7-2C4516F624F7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
