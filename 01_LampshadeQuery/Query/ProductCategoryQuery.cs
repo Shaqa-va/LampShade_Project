@@ -106,6 +106,7 @@ namespace _01_LampshadeQuery.Query
                 Picture = product.Picture,
                 PictureAlt = product.PictureAlt,
                 PictureTitle = product.PictureTitle,
+                ShortDescription =product.ShortDescription,
                 Slug = product.Slug
 
             }).ToList();
@@ -118,11 +119,11 @@ namespace _01_LampshadeQuery.Query
             {
                 x.ProductId,
                 x.UnitPrice
-            }).ToList();
+            }).AsNoTracking().ToList();
 
             var discounts = _discountContext.CusomterDiscounts
                 .Where(x => x.StartDate < DateTime.Now && x.EndDate > DateTime.Now)
-                .Select(x => new { x.DiscountRate, x.ProductId, x.EndDate }).ToList();
+                .Select(x => new { x.DiscountRate, x.ProductId, x.EndDate }).AsNoTracking().ToList();
 
             var category = _context.ProductCategories
                 .Include(x => x.Products)
@@ -138,7 +139,7 @@ namespace _01_LampshadeQuery.Query
 
                     Products = MapProducts(x.Products)
                 }
-            ).FirstOrDefault(x => x.Slug == slug);
+            ).AsNoTracking().FirstOrDefault(x => x.Slug == slug);
 
 
             foreach (var product in category.Products)
