@@ -30,6 +30,56 @@ namespace _01_LampshadeQuery.Query
             throw new NotImplementedException();
         }
 
+        //public ProductQueryModel GetDetails(string slug)
+        //{
+        //    var inventory = _inventoryContext.Inventory.Select(x => new { x.ProductId, x.UnitPrice, x.InStock }).ToList();
+
+        //    var discounsts = _discountContext.CusomterDiscounts
+        //        .Where(x => x.StartDate < DateTime.Now && x.EndDate > DateTime.Now)
+        //        .Select(x => new { x.DiscountRate, x.ProductId, x.EndDate }).ToList();
+
+
+        //        var product = _context.Products
+        //            .Include(x => x.Category)
+        //            .Include(x => x.I)
+        //            .Select(x => new ProductQueryModel
+        //            {
+        //                Id = x.Id,
+        //                Category = x.Category.Name,
+        //                Name = x.Name,
+        //                Picture = x.Picture,
+        //                PictureAlt = x.PictureAlt,
+        //                PictureTitle = x.PictureTitle,
+        //                Slug = x.Slug,
+        //                CategorySlug = x.Category.Slug,
+        //                Keywords = x.Keywords,
+        //                MetaDescription = x.MetaDescription,
+        //                ShortDescription = x.ShortDescription,
+        //                IsInStock=x.
+        //            }).AsNoTracking().FirstOrDefaultAsync(x => x.Slug == slug);
+        //    if (product == null)
+        //        return new ProductQueryModel();
+        //    var productInventory = inventory.FirstOrDefault(x => x.ProductId == product.Id);
+        //    if (productInventory != null)
+        //    {
+        //        product.IsInStock = productInventory.InStock;
+        //        var price = productInventory.UnitPrice;
+        //        product.Price = price.ToMoney();
+        //        product.DoublePrice = price;
+        //        var discount = discounts.FirstOrDefault(x => x.ProductId == product.Id);
+        //        if (discount != null)
+        //        {
+        //            var discountRate = discount.DiscountRate;
+        //            product.DiscountRate = discountRate;
+        //            product.DiscountExpireDate = discount.EndDate.ToDiscountFormat();
+        //            product.HasDiscount = discountRate > 0;
+        //            var discountAmount = Math.Round((price * discountRate) / 100);
+        //            product.PriceWithDiscount = (price - discountAmount).ToMoney();
+        //        }
+        //    }
+
+        //}
+
         public List<ProductQueryModel> GetLatestArrivals()
         {
             var inventory = _inventoryContext.Inventory.Select(x => new

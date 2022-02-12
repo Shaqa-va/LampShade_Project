@@ -2,9 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 
 namespace ShopManagement.Application.Contracts.ProductCategory
 {
@@ -13,7 +11,10 @@ namespace ShopManagement.Application.Contracts.ProductCategory
         [Required(ErrorMessage=ValidationMessage.IsRequired)]
         public string Name { get;  set; }
         public string Description { get;  set; }
-        public string Picture { get;  set; }
+        //[Required(ErrorMessage =ValidationMessage.IsRequired)]
+        [FileExtentionLimitation(new string[] { ".jpeg",".jpg",".png"}, ErrorMessage = ValidationMessage.InvalidFileFormat) ]
+        [MaxFileSize(3*1024, ErrorMessage =ValidationMessage.MaxFileSize)]
+        public IFormFile Picture { get;  set; }
         public string PictureTitle { get;  set; }
         public string PictureAlt { get; set; }
         [Required(ErrorMessage = ValidationMessage.IsRequired)]

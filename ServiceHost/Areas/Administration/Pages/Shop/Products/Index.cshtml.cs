@@ -50,7 +50,7 @@ namespace ServiceHost.Areas.Administration.Pages.Shop.Products
         {
             var product = _productApplication.GetDetails(id);
            product.Categories = _productCategoryApplication.GetProductCategories();
-            return Partial("Edit", product);
+            return Partial("./Edit", product);
 
         }
 

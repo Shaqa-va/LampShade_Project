@@ -11,10 +11,13 @@ namespace ShopManagement.Application
 {
     public class ProductCategoryApplication:IProductCategoryApplication
     {
+        private readonly IFileUploader _fileUploader;
         private readonly IProductCategoryRepository _productCategoryRepository;
-        public ProductCategoryApplication(IProductCategoryRepository productCategoryRepository)
+        public ProductCategoryApplication(IProductCategoryRepository productCategoryRepository
+            , IFileUploader fileUploader)
         {
             _productCategoryRepository = productCategoryRepository;
+            _fileUploader = fileUploader;
         }
 
         public OperationResult Create(CreateProductCategory command)
@@ -25,7 +28,7 @@ namespace ShopManagement.Application
 
             var sulg = command.Slug.Slugify();
             var propductCategory = new ShopManagement.Domain.ProductCategoryAgg.ProductCategory(command.Name, command.Description,
-                command.Picture, command.PictureTitle, command.PictureAlt,
+               "", command.PictureTitle, command.PictureAlt,
                 command.Keywords, command.MetaDescription, sulg);
             _productCategoryRepository.Create(propductCategory);
             _productCategoryRepository.SaveChanges();
@@ -42,8 +45,10 @@ namespace ShopManagement.Application
                 return operation.Failed(ApplicationMessages.DuplicatedRecord);
 
             var sulg = command.Slug.Slugify();
+            var picturePath = $"{command.Slug}";
+            var fileName = _fileUploader.Upload(command.Picture,picturePath);
             productCategory.Edit(command.Name, command.Description,
-                 command.Picture, command.PictureTitle, command.PictureAlt,
+                 fileName, command.PictureTitle, command.PictureAlt,
                  command.Keywords, command.MetaDescription, sulg);
             _productCategoryRepository.SaveChanges();
             return operation.Seccedded();

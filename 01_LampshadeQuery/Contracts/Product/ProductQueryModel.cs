@@ -22,5 +22,8 @@ namespace _01_LampshadeQuery.Contracts.Product
         public string DiscountExpirationDate { get; set; }
         public string  ShortDescription { get; set; }
         public string CategorySlug { get; set; }
+        public string Keywords { get; set; }
+        public string MetaDescription { get; set; }
+       
     }
 }
