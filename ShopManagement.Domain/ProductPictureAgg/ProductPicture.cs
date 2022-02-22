@@ -1,4 +1,5 @@
 ﻿using _0_Framework.Domain;
+using Microsoft.AspNetCore.Http;
 using ShopManagement.Domain.ProductAgg;
 using System;
 using System.Collections.Generic;
@@ -30,7 +31,8 @@ namespace ShopManagement.Domain.ProductPictureAgg
         public void Edit(long productId, string picture, string pictureAlt, string pictureTitle)
         {
             ProductId = productId;
-            Picture = picture;
+            if(!string.IsNullOrEmpty(picture))
+             Picture = picture;
             PictureAlt = pictureAlt;
             PictureTitle = pictureTitle;
         }

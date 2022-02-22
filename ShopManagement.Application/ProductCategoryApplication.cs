@@ -27,8 +27,11 @@ namespace ShopManagement.Application
                 return operation.Failed(ApplicationMessages.DuplicatedRecord);
 
             var sulg = command.Slug.Slugify();
+
+            var picturePath = $"{command.Slug}";
+            var PictureName = _fileUploader.Upload(command.Picture, picturePath);
             var propductCategory = new ShopManagement.Domain.ProductCategoryAgg.ProductCategory(command.Name, command.Description,
-               "", command.PictureTitle, command.PictureAlt,
+               PictureName, command.PictureTitle, command.PictureAlt,
                 command.Keywords, command.MetaDescription, sulg);
             _productCategoryRepository.Create(propductCategory);
             _productCategoryRepository.SaveChanges();
