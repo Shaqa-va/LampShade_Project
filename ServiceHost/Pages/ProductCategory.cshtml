@@ -1,4 +1,4 @@
-﻿@page
+﻿@page "{id}"
 @model ServiceHost.Pages.ProductCategoryModel
 @{
     ViewData["title"] = "گروه محصولات";
@@ -109,10 +109,10 @@
                                                                 <span class="main-price">@product.Price تومان</span>
                                                             }
                                                         </p>
-                                                        @if (product.HasDiscount)
+                                                        @*@if (product.HasDiscount)
                                                         {
                                                             <div class="product-countdown" data-countdown="@product.DiscountExpirationDate"></div>
-                                                        }
+                                                        }*@
                                                     </div>
                                                 </div>
                                             </div>

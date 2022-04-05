@@ -157,7 +157,7 @@ namespace _01_LampshadeQuery.Query
                     {
                         var discountRate = discounts.FirstOrDefault(x => x.ProductId == product.Id).DiscountRate;
                         product.DiscountRate = discountRate;
-                        product.DiscountExpirationDate = discount.EndDate.ToDiscountFormat();
+                        //product.DiscountExpirationDate = discount.EndDate.ToDiscountFormat();
                         product.HasDiscount = discountRate > 0;
                         var discountAmount = Math.Round((price * discountRate) / 100);
                         product.PriceWithDiscount = (price - discountAmount).ToMoney();

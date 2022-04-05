@@ -27,13 +27,13 @@ namespace ShopManagement.Infrastructure.EFCore.Repository
                 Code = x.Code,
                 Slug = x.Slug,
                 CategoryId = x.CategoryId,
-                ShortDescription=x.ShortDescription,
+                ShortDescription = x.ShortDescription,
                 Description = x.Description,
                 Keywords = x.Keywords,
                 MetaDescription = x.MetaDescription,
                 PictureAlt = x.Picture,
                 PictureTitle = x.PictureTitle,
-       
+
             }).FirstOrDefault(x => x.Id == id);
         }
 
@@ -41,15 +41,15 @@ namespace ShopManagement.Infrastructure.EFCore.Repository
         {
             return _context.Products.Select(x => new ProductViewModel
             {
-                Id=x.Id,
-                Name=x.Name,
+                Id = x.Id,
+                Name = x.Name,
 
             }).ToList();
         }
 
         public Product GetProductWithCategory(long id)
         {
-            return _context.Products.Include(x=>x.Category).FirstOrDefault(x=>x.Id==id);
+            return _context.Products.Include(x => x.Category).FirstOrDefault(x => x.Id == id);
         }
 
         public List<ProductViewModel> Search(ProductSearchModel searchModel)
