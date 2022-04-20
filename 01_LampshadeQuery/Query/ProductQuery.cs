@@ -3,6 +3,7 @@ using _01_LampshadeQuery.Contracts.Product;
 using DiscountManagement.Infrastructure.EFCore;
 using InventoryManagement.Infrastructure.EFCore;
 using Microsoft.EntityFrameworkCore;
+using ShopManagement.Domain.CommentAgg;
 using ShopManagement.Domain.ProductPictureAgg;
 using ShopManagement.Infrastructure.EFCore;
 using System;
@@ -39,6 +40,7 @@ namespace _01_LampshadeQuery.Query
             var product = _context.Products
                 .Include(x => x.Category)
                 .Include(x => x.ProductPictures)
+                .Include(x => x.Comments)
                 .Select(product => new ProductQueryModel
                 {
                     Id = product.Id,
@@ -53,7 +55,7 @@ namespace _01_LampshadeQuery.Query
                     Description = product.Description,
                     Keywords = product.Keywords,
                     MetaDescription = product.MetaDescription,
-
+                    Comments = MapComment(product.Comments),
                     ShortDescription = product.ShortDescription,
                     Pictures = MapProductPictures(product.ProductPictures)
                 }).AsNoTracking().FirstOrDefault(x => x.Slug == slug);
@@ -84,17 +86,31 @@ namespace _01_LampshadeQuery.Query
             return product;
         }
 
+        private static List<CommentQueryModel> MapComment(List<Comment> comments)
+        {
+            return comments.Where(x => !x.IsCanceled).Where(x => x.IsConfirmed).Select(x => new CommentQueryModel
+            {
+                Id = x.Id,
+                Message = x.Message,
+                Name = x.Name
+            }).OrderByDescending(x=>x.Id).ToList();
+        }
+
         private static List<ProductPictureQueryModel> MapProductPictures(List<ProductPicture> pictures)
         {
-            return pictures.Select(x => new ProductPictureQueryModel { 
-                IsRemoved=x.IsRemoved,
-                Picture=x.Picture,
-                PictureAlt=x.PictureAlt,
-                PictureTitle=x.PictureTitle,
-                ProductId=x.ProductId
-            
+            return pictures.Select(x => new ProductPictureQueryModel
+            {
+                IsRemoved = x.IsRemoved,
+                Picture = x.Picture,
+                PictureAlt = x.PictureAlt,
+                PictureTitle = x.PictureTitle,
+                ProductId = x.ProductId
+
             }).Where(x => !x.IsRemoved).ToList();
         }
+
+
+
 
         public List<ProductQueryModel> GetLatestArrivals()
         {
@@ -120,7 +136,7 @@ namespace _01_LampshadeQuery.Query
                     PictureTitle = product.PictureTitle,
                     Slug = product.Slug
                 })
-                .OrderByDescending(x=>x.Id).Take(6).AsNoTracking().ToList();
+                .OrderByDescending(x => x.Id).Take(6).AsNoTracking().ToList();
             foreach (var product in products)
             {
                 var productInventory = inventory.FirstOrDefault(x => x.ProductId == product.Id);
@@ -148,7 +164,7 @@ namespace _01_LampshadeQuery.Query
             return products;
         }
 
- 
+
 
         public List<ProductQueryModel> Search(string value)
         {
@@ -168,18 +184,18 @@ namespace _01_LampshadeQuery.Query
                 {
                     Id = product.Id,
                     Category = product.Category.Name,
-                    CategorySlug=product.Category.Slug,
+                    CategorySlug = product.Category.Slug,
                     Name = product.Name,
                     Picture = product.Picture,
                     PictureAlt = product.PictureAlt,
                     PictureTitle = product.PictureTitle,
-                   ShortDescription =product.ShortDescription,
+                    ShortDescription = product.ShortDescription,
                     Slug = product.Slug
                 }
-            ).AsNoTracking() ;
+            ).AsNoTracking();
 
             if (!string.IsNullOrWhiteSpace(value))
-            
+
                 query = query.Where(x => x.Name.Contains(value) || x.ShortDescription.Contains(value));
 
             var products = query.OrderByDescending(x => x.Id).ToList();

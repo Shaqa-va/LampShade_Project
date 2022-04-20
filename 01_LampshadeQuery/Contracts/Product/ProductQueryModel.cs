@@ -28,6 +28,7 @@ namespace _01_LampshadeQuery.Contracts.Product
         public bool IsInStock { get; set; }
         //public List<CommentQueryModel> Comments { get; set; }
         public List<ProductPictureQueryModel> Pictures { get; set; }
+        public List<CommentQueryModel> Comments { get; set; }
     }
 
     public class ProductPictureQueryModel
@@ -39,5 +40,15 @@ namespace _01_LampshadeQuery.Contracts.Product
         public bool IsRemoved { get; set; }
 
     }
+
+    public class CommentQueryModel
+    {
+
+        public long Id { get; set; }
+        public string Name { get; set; }
+        public string Message { get; set; }
+     
+    }
+
 
 }

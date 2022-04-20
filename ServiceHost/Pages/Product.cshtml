@@ -2,7 +2,7 @@
 @model ServiceHost.Pages.ProductModel
 @{
     ViewData["Title"] = Model.Product.Name;
-    // ViewData["keywords"] = Model.Product.Keywords;
+    ViewData["keywords"] = Model.Product.Keywords;
     ViewData["metaDescription"] = Model.Product.MetaDescription;
 }
 
@@ -104,7 +104,7 @@
                                             {
                                                 <div class="single-image">
                                                     <img src="~/ProductPictures/@picture.Picture" class="img-fluid"
-                                                         alt="@picture.PictureAlt" title="@picture.PictureTitle">t
+                                                         alt="@picture.PictureAlt" title="@picture.PictureTitle">
                                                 </div>
                                             }
                                         </div>
@@ -217,8 +217,8 @@
                                                 <a class="nav-item nav-link active" id="description-tab"
                                                    data-toggle="tab" href="#product-description" role="tab"
                                                    aria-selected="true">توضیحات</a>
-                                                @*<a class="nav-item nav-link" id="review-tab" data-toggle="tab"
-                                                    href="#review" role="tab" aria-selected="false">نظرات (@Model.Product.Comments.Count)</a>*@
+                                                <a class="nav-item nav-link" id="review-tab" data-toggle="tab"
+                                                   href="#review" role="tab" aria-selected="false">نظرات (@Model.Product.Comments.Count)</a>
                                             </div>
                                         </nav>
                                         <div class="tab-content" id="nav-tabContent">
@@ -273,25 +273,25 @@
                                                                 <span>(0)</span>
                                                             </div>
                                                         </div>*@
-                                                    @*@foreach (var comment in Model.Product.Comments)
-                                                        {
-                                                            <div class="ratings-wrapper">
-                                                                <div class="sin-ratings">
-                                                                    <div class="rating-author">
-                                                                        <h3>@comment.Name</h3>
-                                                                        <div class="rating-star">
-                                                                                <i class="fa fa-star"></i>
-                                                                                <i class="fa fa-star"></i>
-                                                                                <i class="fa fa-star"></i>
-                                                                                <i class="fa fa-star"></i>
-                                                                                <i class="fa fa-star"></i>
-                                                                                <span>(5)</span>
-                                                                            </div>
-                                                                    </div>
-                                                                    <p>@comment.Message</p>
+                                                    @foreach (var comment in Model.Product.Comments)
+                                                    {
+                                                        <div class="ratings-wrapper">
+                                                            <div class="sin-ratings">
+                                                                <div class="rating-author">
+                                                                    <h3>@comment.Name</h3>
+                                                                    @*<div class="rating-star">
+                                                                            <i class="fa fa-star"></i>
+                                                                            <i class="fa fa-star"></i>
+                                                                            <i class="fa fa-star"></i>
+                                                                            <i class="fa fa-star"></i>
+                                                                            <i class="fa fa-star"></i>
+                                                                            <span>(5)</span>
+                                                                        </div>*@
                                                                 </div>
+                                                                <p>@comment.Message</p>
                                                             </div>
-                                                        }*@
+                                                        </div>
+                                                    }
 
                                                     <div class="rating-form-wrapper fix">
                                                         <h3>نظر خود را به ما بگویید</h3>
